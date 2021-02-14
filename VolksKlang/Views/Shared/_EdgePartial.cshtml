@@ -1,0 +1,29 @@
+﻿@model dynamic
+
+<div class="form-group">
+    <label class="control-label">@ViewData["Name"]</label>
+ 
+    <select class="form-control" name="@ViewData["Name"]">
+        @foreach (var item in Model)
+        {
+            if (ViewData["ID"]!= null && (item.ID.ToString() == ViewData["ID"].ToString()))
+            {
+                <option selected="" value="@item.ID">@item.Name</option>
+            }
+            else
+            {
+                <option   value="@item.ID" >@item.Name</option>
+            }
+
+
+
+        }
+    </select>
+
+ 
+</div>
+
+
+
+
+ 
