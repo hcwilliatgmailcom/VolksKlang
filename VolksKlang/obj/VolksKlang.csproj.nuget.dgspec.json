@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\hcwil\\source\\repos\\VolksKlang3\\VolksKlang\\VolksKlang.csproj": {}
+    "D:\\VolksKlang\\VolksKlang\\VolksKlang.csproj": {}
   },
   "projects": {
-    "C:\\Users\\hcwil\\source\\repos\\VolksKlang3\\VolksKlang\\VolksKlang.csproj": {
+    "D:\\VolksKlang\\VolksKlang\\VolksKlang.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hcwil\\source\\repos\\VolksKlang3\\VolksKlang\\VolksKlang.csproj",
+        "projectUniqueName": "D:\\VolksKlang\\VolksKlang\\VolksKlang.csproj",
         "projectName": "VolksKlang",
-        "projectPath": "C:\\Users\\hcwil\\source\\repos\\VolksKlang3\\VolksKlang\\VolksKlang.csproj",
+        "projectPath": "D:\\VolksKlang\\VolksKlang\\VolksKlang.csproj",
         "packagesPath": "C:\\Users\\hcwil\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hcwil\\source\\repos\\VolksKlang3\\VolksKlang\\obj\\",
+        "outputPath": "D:\\VolksKlang\\VolksKlang\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\hcwil\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -42,25 +42,25 @@
           "dependencies": {
             "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[3.1.12, )"
+              "version": "[5.0.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer.Design": {
+              "target": "Package",
+              "version": "[1.1.6, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[3.1.12, )"
+              "version": "[5.0.3, )"
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[5.0.2, )"
-            },
-            "MySql.Data": {
-              "target": "Package",
-              "version": "[8.0.23, )"
-            },
-            "MySql.Data.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[8.0.22, )"
             }
           },
           "imports": [

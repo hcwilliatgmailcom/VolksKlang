@@ -25,53 +25,19 @@ namespace VolksKlang.Controllers
             return View(await _context.Objekt.Include(o=>o.Herkunft).ToListAsync());
         }
 
-        // GET: Objekts/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
 
-         
-            var objekt = await _context.Objekt
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (objekt == null)
-            {
-                return NotFound();
-            }
-
-            return View(objekt);
-        }
 
         // GET: Objekts/Create
         public async Task<IActionResult> Create()
         {
+            Objekt objekt= new Objekt();
+            _context.Add(objekt);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Edit),new { id = objekt.ID });
 
-       
-            ViewBag.Herkunfts = await _context.Herkunft.ToListAsync();
-
-            return View();
         }
 
-        // POST: Objekts/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Objektbezeichnung,Beschreibung,Material,Abmessungen,Zustand,Objektbeschriftung")] Objekt objekt, int Herkunft)
-        {
 
-            objekt.Herkunft=await _context.Herkunft.FirstOrDefaultAsync(m => m.ID == Herkunft);
-
-            if (ModelState.IsValid)
-            {
-                _context.Add(objekt);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(objekt);
-        }
 
         // GET: Objekts/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -81,10 +47,10 @@ namespace VolksKlang.Controllers
                 return NotFound();
             }
 
+            
             ViewBag.Herkunfts = await _context.Herkunft.ToListAsync();
-
             var objekt = await _context.Objekt.Include(o=>o.Herkunft).FirstOrDefaultAsync(o => o.ID==id);
-
+ 
 
             if (objekt == null)
             {
@@ -98,12 +64,15 @@ namespace VolksKlang.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Objektbezeichnung,Beschreibung,Material,Abmessungen,Zustand,Objektbeschriftung")] Objekt objekt)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Objektbezeichnung,Beschreibung,Material,Abmessungen,Zustand,Objektbeschriftung")] Objekt objekt, int Herkunft)
         {
             if (id != objekt.ID)
             {
                 return NotFound();
             }
+
+            objekt.Herkunft = await _context.Herkunft.AnyAsync(m => m.ID == Herkunft) ? await _context.Herkunft.FirstAsync(m => m.ID == Herkunft) : null;
+            _context.Entry(objekt).Reference(p => p.Herkunft).IsModified = true;
 
             if (ModelState.IsValid)
             {
@@ -128,34 +97,7 @@ namespace VolksKlang.Controllers
             return View(objekt);
         }
 
-        // GET: Objekts/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var objekt = await _context.Objekt
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (objekt == null)
-            {
-                return NotFound();
-            }
-
-            return View(objekt);
-        }
-
-        // POST: Objekts/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var objekt = await _context.Objekt.FindAsync(id);
-            _context.Objekt.Remove(objekt);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+ 
 
         private bool ObjektExists(int id)
         {

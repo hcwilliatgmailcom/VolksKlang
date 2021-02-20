@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VolksKlang.Data;
@@ -9,66 +10,41 @@ using VolksKlang.Data;
 namespace VolksKlang.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210214165002_ForeignHerkunft")]
-    partial class ForeignHerkunft
+    [Migration("20210215173519_SqlServer")]
+    partial class SqlServer
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.12")
-                .HasAnnotation("Relational:MaxIdentifierLength", 64);
+                .HasAnnotation("Relational:MaxIdentifierLength", 128)
+                .HasAnnotation("ProductVersion", "5.0.3")
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("VolksKlang.Models.Bild", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<byte[]>("Inhalt")
-                        .HasColumnType("varbinary(4000)");
+                        .HasColumnType("varbinary(max)");
 
                     b.HasKey("ID");
 
                     b.ToTable("Bild");
                 });
 
-            modelBuilder.Entity("VolksKlang.Models.Book", b =>
-                {
-                    b.Property<string>("ISBN")
-                        .HasColumnType("varchar(767)");
-
-                    b.Property<string>("Author")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Language")
-                        .HasColumnType("text");
-
-                    b.Property<int>("Pages")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("PublisherID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("ISBN");
-
-                    b.HasIndex("PublisherID");
-
-                    b.ToTable("Book");
-                });
-
             modelBuilder.Entity("VolksKlang.Models.Herkunft", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
 
@@ -79,10 +55,11 @@ namespace VolksKlang.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
 
@@ -93,13 +70,14 @@ namespace VolksKlang.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Abmessungen")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Beschreibung")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("BildID")
                         .HasColumnType("int");
@@ -111,13 +89,13 @@ namespace VolksKlang.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Material")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Objektbeschriftung")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Objektbezeichnung")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("StandortID")
                         .HasColumnType("int");
@@ -126,7 +104,7 @@ namespace VolksKlang.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Zustand")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
 
@@ -143,29 +121,15 @@ namespace VolksKlang.Migrations
                     b.ToTable("Objekt");
                 });
 
-            modelBuilder.Entity("VolksKlang.Models.Publisher", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Publisher");
-                });
-
             modelBuilder.Entity("VolksKlang.Models.Standort", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
 
@@ -176,21 +140,15 @@ namespace VolksKlang.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
 
                     b.ToTable("Typ");
-                });
-
-            modelBuilder.Entity("VolksKlang.Models.Book", b =>
-                {
-                    b.HasOne("VolksKlang.Models.Publisher", "Publisher")
-                        .WithMany("Books")
-                        .HasForeignKey("PublisherID");
                 });
 
             modelBuilder.Entity("VolksKlang.Models.Objekt", b =>
@@ -200,7 +158,7 @@ namespace VolksKlang.Migrations
                         .HasForeignKey("BildID");
 
                     b.HasOne("VolksKlang.Models.Herkunft", "Herkunft")
-                        .WithMany()
+                        .WithMany("Objekts")
                         .HasForeignKey("HerkunftID");
 
                     b.HasOne("VolksKlang.Models.Kategorie", "Kategorie")
@@ -214,6 +172,21 @@ namespace VolksKlang.Migrations
                     b.HasOne("VolksKlang.Models.Typ", "Typ")
                         .WithMany()
                         .HasForeignKey("TypID");
+
+                    b.Navigation("Bild");
+
+                    b.Navigation("Herkunft");
+
+                    b.Navigation("Kategorie");
+
+                    b.Navigation("Standort");
+
+                    b.Navigation("Typ");
+                });
+
+            modelBuilder.Entity("VolksKlang.Models.Herkunft", b =>
+                {
+                    b.Navigation("Objekts");
                 });
 #pragma warning restore 612, 618
         }

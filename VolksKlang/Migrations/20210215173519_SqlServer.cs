@@ -1,10 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
-using MySql.Data.EntityFrameworkCore.Metadata;
 
 namespace VolksKlang.Migrations
 {
-    public partial class MySql : Migration
+    public partial class SqlServer : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,9 +11,9 @@ namespace VolksKlang.Migrations
                 name: "Bild",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
-                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    Inhalt = table.Column<byte[]>(nullable: true)
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Inhalt = table.Column<byte[]>(type: "varbinary(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -25,9 +24,9 @@ namespace VolksKlang.Migrations
                 name: "Herkunft",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
-                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true)
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -38,9 +37,9 @@ namespace VolksKlang.Migrations
                 name: "Kategorie",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
-                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true)
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -48,25 +47,12 @@ namespace VolksKlang.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Publisher",
-                columns: table => new
-                {
-                    ID = table.Column<int>(nullable: false)
-                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Publisher", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Standort",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
-                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true)
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -77,9 +63,9 @@ namespace VolksKlang.Migrations
                 name: "Typ",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
-                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true)
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -87,44 +73,22 @@ namespace VolksKlang.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Book",
-                columns: table => new
-                {
-                    ISBN = table.Column<string>(nullable: false),
-                    Title = table.Column<string>(nullable: false),
-                    Author = table.Column<string>(nullable: true),
-                    Language = table.Column<string>(nullable: true),
-                    Pages = table.Column<int>(nullable: false),
-                    PublisherID = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Book", x => x.ISBN);
-                    table.ForeignKey(
-                        name: "FK_Book_Publisher_PublisherID",
-                        column: x => x.PublisherID,
-                        principalTable: "Publisher",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Objekt",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
-                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    HerkunftID = table.Column<int>(nullable: true),
-                    StandortID = table.Column<int>(nullable: true),
-                    Objektbezeichnung = table.Column<string>(nullable: true),
-                    TypID = table.Column<int>(nullable: true),
-                    KategorieID = table.Column<int>(nullable: true),
-                    Beschreibung = table.Column<string>(nullable: true),
-                    Material = table.Column<string>(nullable: true),
-                    Abmessungen = table.Column<string>(nullable: true),
-                    Zustand = table.Column<string>(nullable: true),
-                    Objektbeschriftung = table.Column<string>(nullable: true),
-                    BildID = table.Column<int>(nullable: true)
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    HerkunftID = table.Column<int>(type: "int", nullable: true),
+                    StandortID = table.Column<int>(type: "int", nullable: true),
+                    Objektbezeichnung = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TypID = table.Column<int>(type: "int", nullable: true),
+                    KategorieID = table.Column<int>(type: "int", nullable: true),
+                    Beschreibung = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Material = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Abmessungen = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Zustand = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Objektbeschriftung = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    BildID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -162,11 +126,6 @@ namespace VolksKlang.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Book_PublisherID",
-                table: "Book",
-                column: "PublisherID");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Objekt_BildID",
                 table: "Objekt",
                 column: "BildID");
@@ -195,13 +154,7 @@ namespace VolksKlang.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Book");
-
-            migrationBuilder.DropTable(
                 name: "Objekt");
-
-            migrationBuilder.DropTable(
-                name: "Publisher");
 
             migrationBuilder.DropTable(
                 name: "Bild");
