@@ -11,7 +11,7 @@
 using System;
 using System.Reflection;
 
-[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("aspnet-VolksKlang-A8363C52-A771-4CD7-95FB-0DD64637D7DC")]
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("8e6931c2-a49f-4974-b1c0-4eba6907d038")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("VolksKlang")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]

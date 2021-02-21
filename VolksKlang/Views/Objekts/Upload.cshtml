@@ -1,0 +1,15 @@
+﻿@model VolksKlang.Controllers.FileUpload
+
+<h1>Bild hochladen</h1>
+
+<form enctype="multipart/form-data" method="post">
+    <dl>
+        <dt>
+            Bild
+        </dt>
+        <dd>
+            <input asp-for="FormFile" type="file">
+        </dd>
+    </dl>
+    <input   class="btn btn-danger" type="submit" value="(Neues) Bild hochladen">
+</form>

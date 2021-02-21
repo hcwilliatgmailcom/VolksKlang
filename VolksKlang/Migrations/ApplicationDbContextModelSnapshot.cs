@@ -19,6 +19,54 @@ namespace VolksKlang.Migrations
                 .HasAnnotation("ProductVersion", "5.0.3")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("VolksKlang.Models.AppFile", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<byte[]>("Content")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Serial")
+                        .HasColumnType("int");
+
+                    b.Property<long>("Size")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("UntrustedName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UploadDT")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("File");
+                });
+
+            modelBuilder.Entity("VolksKlang.Models.Bezeichnung", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Kuerzel")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Bezeichnung");
+                });
+
             modelBuilder.Entity("VolksKlang.Models.Bild", b =>
                 {
                     b.Property<int>("ID")
@@ -32,6 +80,21 @@ namespace VolksKlang.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Bild");
+                });
+
+            modelBuilder.Entity("VolksKlang.Models.Erfasser", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Erfasser");
                 });
 
             modelBuilder.Entity("VolksKlang.Models.Herkunft", b =>
@@ -77,7 +140,16 @@ namespace VolksKlang.Migrations
                     b.Property<string>("Beschreibung")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("BezeichnungID")
+                        .HasColumnType("int");
+
                     b.Property<int?>("BildID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Datum")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Euro")
                         .HasColumnType("int");
 
                     b.Property<int?>("HerkunftID")
@@ -89,6 +161,9 @@ namespace VolksKlang.Migrations
                     b.Property<string>("Material")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Objektbeschriftung")
                         .HasColumnType("nvarchar(max)");
 
@@ -98,13 +173,15 @@ namespace VolksKlang.Migrations
                     b.Property<int?>("StandortID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TypID")
-                        .HasColumnType("int");
+                    b.Property<bool>("Vorlage")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Zustand")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("BezeichnungID");
 
                     b.HasIndex("BildID");
 
@@ -113,8 +190,6 @@ namespace VolksKlang.Migrations
                     b.HasIndex("KategorieID");
 
                     b.HasIndex("StandortID");
-
-                    b.HasIndex("TypID");
 
                     b.ToTable("Objekt");
                 });
@@ -134,23 +209,12 @@ namespace VolksKlang.Migrations
                     b.ToTable("Standort");
                 });
 
-            modelBuilder.Entity("VolksKlang.Models.Typ", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Typ");
-                });
-
             modelBuilder.Entity("VolksKlang.Models.Objekt", b =>
                 {
+                    b.HasOne("VolksKlang.Models.Bezeichnung", "Bezeichnung")
+                        .WithMany()
+                        .HasForeignKey("BezeichnungID");
+
                     b.HasOne("VolksKlang.Models.Bild", "Bild")
                         .WithMany()
                         .HasForeignKey("BildID");
@@ -167,9 +231,7 @@ namespace VolksKlang.Migrations
                         .WithMany()
                         .HasForeignKey("StandortID");
 
-                    b.HasOne("VolksKlang.Models.Typ", "Typ")
-                        .WithMany()
-                        .HasForeignKey("TypID");
+                    b.Navigation("Bezeichnung");
 
                     b.Navigation("Bild");
 
@@ -178,8 +240,6 @@ namespace VolksKlang.Migrations
                     b.Navigation("Kategorie");
 
                     b.Navigation("Standort");
-
-                    b.Navigation("Typ");
                 });
 
             modelBuilder.Entity("VolksKlang.Models.Herkunft", b =>

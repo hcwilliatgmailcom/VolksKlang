@@ -18,7 +18,7 @@ namespace VolksKlang.Models
 
         public string Objektbezeichnung { get; set; }
 
-        public Typ Typ { get; set; }
+ 
 
         public Kategorie Kategorie { get; set; }
 
@@ -33,6 +33,18 @@ namespace VolksKlang.Models
         public string Objektbeschriftung { get; set; }
 
         public Bild Bild { get; set; }
+
+        public Bezeichnung Bezeichnung { get; set; }
+
+        public bool Vorlage { get; set; }
+
+
+        public string Name { get; set; }
+
+        public DateTime Datum { get; set; }
+
+        public int Euro { get; set; }
+
 
     }
 }

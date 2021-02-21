@@ -1,0 +1,100 @@
+﻿@model VolksKlang.Models.Objekt
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Objekt Bearbeiten</h1>
+
+
+<hr />
+
+
+
+
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+
+
+            @await Html.PartialAsync("_EdgePartial", ViewBag.Herkunfts, new ViewDataDictionary(ViewData) { { "Selected", Model.Herkunft } })
+
+
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="Euro" class="control-label"></label>
+                <input asp-for="Euro" class="form-control" />
+                <span asp-validation-for="Euro" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Datum" class="control-label"></label>
+                <input asp-for="Datum" class="form-control" />
+                <span asp-validation-for="Datum" class="text-danger"></span>
+            </div>
+
+
+            @await Html.PartialAsync("_EdgePartial", ViewBag.Bezeichnungs, new ViewDataDictionary(ViewData) { { "Selected", Model.Bezeichnung } })
+
+
+
+            @await Html.PartialAsync("_EdgePartial", ViewBag.Kategories, new ViewDataDictionary(ViewData) { { "Selected", Model.Kategorie } })
+
+
+
+            <div class="form-group">
+                <label asp-for="Beschreibung" class="control-label"></label>
+                <textarea class="form-control" asp-for="Beschreibung" rows="10"></textarea>
+
+                <span asp-validation-for="Beschreibung" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Material" class="control-label"></label>
+                <textarea class="form-control" asp-for="Material" rows="10"></textarea>
+                <span asp-validation-for="Material" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Abmessungen" class="control-label"></label>
+                <textarea class="form-control" asp-for="Abmessungen" rows="5"></textarea>
+                <span asp-validation-for="Abmessungen" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Zustand" class="control-label"></label>
+                <textarea class="form-control" asp-for="Zustand" rows="5"></textarea>
+                <span asp-validation-for="Zustand" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Objektbeschriftung" class="control-label"></label>
+                <textarea class="form-control" asp-for="Objektbeschriftung" rows="7"></textarea>
+                <span asp-validation-for="Objektbeschriftung" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <input name="button" type="submit" value="Speichern" class="btn btn-danger" />
+             </div>
+
+
+
+        </form>
+    </div>
+</div>
+
+ 
+
+
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

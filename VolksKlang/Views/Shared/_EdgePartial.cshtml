@@ -1,13 +1,18 @@
 ﻿@model dynamic
 
 <div class="form-group">
-    <label class="control-label">@ViewData["Name"]</label>
+    <label class="control-label">@Model.GetType().GetGenericArguments()[0].Name</label>
  
-    <select class="form-control" name="@ViewData["Name"]">
+    <select class="form-control" name="@Model.GetType().GetGenericArguments()[0].Name">
         <option value="0"></option>
+
+
+    
+
+
         @foreach (var item in Model)
         {
-            if (ViewData["ID"] != null && (item == ViewData["ID"]))
+            if (ViewData["Selected"] != null && (item == ViewData["Selected"]))
             {
                 <option selected="" value="@item.ID">@item.Name</option>
             }

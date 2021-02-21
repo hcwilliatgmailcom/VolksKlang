@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using VolksKlang.Models;
+ 
 
 namespace VolksKlang.Data
 {
@@ -16,13 +17,20 @@ namespace VolksKlang.Data
         public DbSet<VolksKlang.Models.Standort> Standort { get; set; }
         public DbSet<VolksKlang.Models.Objekt> Objekt { get; set; }
         public DbSet<VolksKlang.Models.Herkunft> Herkunft { get; set; }
-        public DbSet<VolksKlang.Models.Typ> Typ { get; set; }
+ 
         public DbSet<VolksKlang.Models.Kategorie> Kategorie { get; set; }
 
 
+        public DbSet<AppFile> File { get; set; }
 
 
-           
+        public DbSet<VolksKlang.Models.Bezeichnung> Bezeichnung { get; set; }
+
+
+        public DbSet<VolksKlang.Models.Erfasser> Erfasser { get; set; }
+
+ 
+
 
 
 

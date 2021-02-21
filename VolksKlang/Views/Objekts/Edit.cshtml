@@ -4,9 +4,9 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Bearbeiten</h1>
+<h1>Objekt Bearbeiten</h1>
 
-<h4>Objekt</h4>
+
 <hr />
 
 
@@ -17,13 +17,38 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ID" />
+
+
+            @await Html.PartialAsync("_EdgePartial", ViewBag.Herkunfts, new ViewDataDictionary(ViewData) { { "Selected", Model.Herkunft } })
+
+
             <div class="form-group">
-                <label asp-for="Objektbezeichnung" class="control-label"></label>
-                <input asp-for="Objektbezeichnung" class="form-control" />
-                <span asp-validation-for="Objektbezeichnung" class="text-danger"></span>
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
             </div>
 
-            @await Html.PartialAsync("_EdgePartial", ViewBag.Herkunfts, new ViewDataDictionary(ViewData) { { "Name", "Herkunft" }, { "ID", Model.Herkunft } })
+
+            <div class="form-group">
+                <label asp-for="Euro" class="control-label"></label>
+                <input asp-for="Euro" class="form-control" />
+                <span asp-validation-for="Euro" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Datum" class="control-label"></label>
+                <input asp-for="Datum" class="form-control" />
+                <span asp-validation-for="Datum" class="text-danger"></span>
+            </div>
+
+
+            @await Html.PartialAsync("_EdgePartial", ViewBag.Bezeichnungs, new ViewDataDictionary(ViewData) { { "Selected", Model.Bezeichnung } })
+
+
+
+            @await Html.PartialAsync("_EdgePartial", ViewBag.Kategories, new ViewDataDictionary(ViewData) { { "Selected", Model.Kategorie } })
+
+
 
             <div class="form-group">
                 <label asp-for="Beschreibung" class="control-label"></label>
@@ -33,33 +58,51 @@
             </div>
             <div class="form-group">
                 <label asp-for="Material" class="control-label"></label>
-                <input asp-for="Material" class="form-control" />
+                <textarea class="form-control" asp-for="Material" rows="10"></textarea>
                 <span asp-validation-for="Material" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Abmessungen" class="control-label"></label>
-                <input asp-for="Abmessungen" class="form-control" />
+                <textarea class="form-control" asp-for="Abmessungen" rows="5"></textarea>
                 <span asp-validation-for="Abmessungen" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Zustand" class="control-label"></label>
-                <input asp-for="Zustand" class="form-control" />
+                <textarea class="form-control" asp-for="Zustand" rows="5"></textarea>
                 <span asp-validation-for="Zustand" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Objektbeschriftung" class="control-label"></label>
-                <input asp-for="Objektbeschriftung" class="form-control" />
+                <textarea class="form-control" asp-for="Objektbeschriftung" rows="7"></textarea>
                 <span asp-validation-for="Objektbeschriftung" class="text-danger"></span>
             </div>
+
+
+ 
+
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-danger" />
+                <input name="button" type="submit" value="Speichern" class="btn btn-danger" />
+                <input name="button" type="submit" value="Speichern und Bild hochladen" class="btn btn-danger" />
+
             </div>
+
+
+
         </form>
     </div>
 </div>
 
- 
- 
+
+@if (!(ViewBag.image == null))
+{
+
+<img style="width:100%;" src="/Objekts/Download/@Model.ID" />
+}
+
+
+
+
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
