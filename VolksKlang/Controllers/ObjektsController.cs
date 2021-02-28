@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mime;
+using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -42,6 +43,32 @@ namespace VolksKlang.Controllers
                 if (!String.IsNullOrEmpty(searchstring))
                 {
                     list = _context.Objekt.Where(o => o.Vorlage == false && (o.Beschreibung).Contains(searchstring)).Include(o => o.Bezeichnung).ToList();  
+
+                    foreach(var item in list)
+                    {
+                        string highlighted = "";
+                        for (int index = 0; ; index += searchstring.Length)
+                        {
+                            int preindex = index;
+                            index = item.Beschreibung.IndexOf(searchstring, index,StringComparison.OrdinalIgnoreCase);
+                            if (index == -1)
+                            {
+                                highlighted = highlighted + HtmlEncoder.Default.Encode(item.Beschreibung.Substring(preindex, item.Beschreibung.Length- preindex));
+                                break;
+                            }
+
+                            highlighted = highlighted + HtmlEncoder.Default.Encode(item.Beschreibung.Substring(preindex, index - preindex));
+                            highlighted = highlighted + "<span style='background-color:yellow;'>";
+                            highlighted = highlighted + HtmlEncoder.Default.Encode(item.Beschreibung.Substring(index, searchstring.Length));
+                            highlighted = highlighted + "</span>";
+
+                        }
+
+                        item.Beschreibung = highlighted;
+
+                    }
+
+
                 } else
                 {
 

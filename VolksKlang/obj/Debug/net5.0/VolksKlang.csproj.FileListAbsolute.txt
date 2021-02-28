@@ -425,3 +425,4 @@ D:\VolksKlang\VolksKlang\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Error.cshtm
 D:\VolksKlang\VolksKlang\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
 D:\VolksKlang\VolksKlang\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
 D:\VolksKlang\VolksKlang\obj\Debug\net5.0\Razor\Views\Objekts\Delete.cshtml.g.cs
+D:\VolksKlang\VolksKlang\obj\Debug\net5.0\VolksKlang.csprojAssemblyReference.cache
