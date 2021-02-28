@@ -252,3 +252,4 @@ D:\VolksKlang\VolksKlang\obj\Release\net5.0\Razor\Areas\Identity\Pages\Account\_
 D:\VolksKlang\VolksKlang\obj\Release\net5.0\Razor\Areas\Identity\Pages\Error.cshtml.g.cs
 D:\VolksKlang\VolksKlang\obj\Release\net5.0\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
 D:\VolksKlang\VolksKlang\obj\Release\net5.0\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
+D:\VolksKlang\VolksKlang\obj\Release\net5.0\Razor\Views\Objekts\Delete.cshtml.g.cs

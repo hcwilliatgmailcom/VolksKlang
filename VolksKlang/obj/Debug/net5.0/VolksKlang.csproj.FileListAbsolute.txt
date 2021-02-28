@@ -375,7 +375,6 @@ D:\VolksKlang\VolksKlang\obj\Debug\net5.0\Razor\Views\Vorlages\Edit.cshtml.g.cs
 D:\VolksKlang\VolksKlang\obj\Debug\net5.0\Razor\Views\Vorlages\Index.cshtml.g.cs
 D:\VolksKlang\VolksKlang\obj\Debug\net5.0\Razor\Views\Vorlages\Upload.cshtml.g.cs
 D:\VolksKlang\VolksKlang\obj\Debug\net5.0\Razor\Views\Vorlages\Templates.cshtml.g.cs
-D:\VolksKlang\VolksKlang\obj\Debug\net5.0\VolksKlang.csprojAssemblyReference.cache
 D:\VolksKlang\VolksKlang\bin\Debug\net5.0\VolksKlang.StaticWebAssets.xml
 D:\VolksKlang\VolksKlang\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.Internal.dll
 D:\VolksKlang\VolksKlang\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
@@ -425,3 +424,4 @@ D:\VolksKlang\VolksKlang\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\_Vi
 D:\VolksKlang\VolksKlang\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Error.cshtml.g.cs
 D:\VolksKlang\VolksKlang\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
 D:\VolksKlang\VolksKlang\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
+D:\VolksKlang\VolksKlang\obj\Debug\net5.0\Razor\Views\Objekts\Delete.cshtml.g.cs

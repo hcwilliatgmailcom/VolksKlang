@@ -26,20 +26,37 @@ namespace VolksKlang.Controllers
         }
 
         // GET: Objekts
-        public IActionResult Index()
+        public IActionResult Index(string searchstring)
         {
 
+            ViewBag.search = searchstring;
+                
             var list = new List<VolksKlang.Models.Objekt>();
 
             try
             {
-                 list = _context.Objekt.Where(o => o.Vorlage == false).Include(o => o.Bezeichnung).ToList();
 
-           
+
+
+
+                if (!String.IsNullOrEmpty(searchstring))
+                {
+                    list = _context.Objekt.Where(o => o.Vorlage == false && (o.Beschreibung).Contains(searchstring)).Include(o => o.Bezeichnung).ToList();  
+                } else
+                {
+
+                    list = _context.Objekt.Where(o => o.Vorlage == false).Include(o => o.Bezeichnung).ToList();
+                }
+
+
             } catch (Exception ex)
             {
                 ViewBag.Alert = ex.Message;
             }
+
+
+            ViewBag.usr= HttpContext.User.Identity.Name;   
+
 
             return View(list);
         
@@ -237,6 +254,42 @@ namespace VolksKlang.Controllers
         {
             return _context.Objekt.Any(e => e.ID == id);
         }
+
+
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var objekt = await _context.Objekt
+                .FirstOrDefaultAsync(m => m.ID == id);
+            if (objekt == null)
+            {
+                return NotFound();
+            }
+
+            return View(objekt);
+        }
+
+        // POST: Objekts1/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var objekt = await _context.Objekt.FindAsync(id);
+            _context.Objekt.Remove(objekt);
+
+            if(HttpContext.User.Identity.Name == "p_rath@gmx.at")
+            {
+                await _context.SaveChangesAsync();
+            }
+
+           
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 
     public class FileUpload
@@ -246,6 +299,8 @@ namespace VolksKlang.Controllers
         public IFormFile FormFile { get; set; }
     }
  
+
+
 
 
 }

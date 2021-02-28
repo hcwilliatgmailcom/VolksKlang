@@ -6,6 +6,14 @@
 
 <h1>Objektliste</h1>
 
+
+<form asp-controller="Objekts" asp-action="Index" method="get">
+    <p>
+        <input type="text" name="SearchString" value="@ViewBag.search"/>
+        <input class="btn btn-primary" type="submit" value="Suchen" />
+    </p>
+</form>
+
  
 <table class="table">
  
@@ -26,6 +34,13 @@
 
             <td>
                 <a asp-action="Edit" class="btn btn-success" asp-route-id="@item.ID">Bearbeiten</a>
+
+                @if (ViewBag.usr == "p_rath@gmx.at")
+                {
+                    <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.ID">Löschen</a>
+                }
+
+
             </td>
 
 
