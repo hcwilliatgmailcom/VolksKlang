@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using VolksKlang.Data;
 using VolksKlang.Models;
 
 namespace VolksKlang.Controllers
@@ -14,10 +15,15 @@ namespace VolksKlang.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-     
-        public HomeController(ILogger<HomeController> logger)
+
+        private readonly ApplicationDbContext _context;
+
+ 
+
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
         {
             _logger = logger;
+            _context = context;
         }
    
         [Authorize]
@@ -28,6 +34,25 @@ namespace VolksKlang.Controllers
       
         public IActionResult Privacy()
         {
+
+
+            try
+            {
+
+
+
+
+                VolksKlang.Models.Objekt test = _context.Objekt.First();
+
+                    
+
+
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Alert = ex.Message;
+            }
+
             return View();
         }
 

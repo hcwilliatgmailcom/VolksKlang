@@ -46,5 +46,8 @@ namespace VolksKlang.Models
         public int Euro { get; set; }
 
 
+        public string Kuerzel { get; set; }
+
+
     }
 }

@@ -95,6 +95,24 @@ namespace VolksKlang.Controllers
         public async Task<IActionResult> Create()
         {
             Objekt objekt= new Objekt();
+
+            var usr= HttpContext.User.Identity.Name;
+            if(usr == "p_rath@gmx.at")
+            {
+                objekt.Kuerzel = "PR";
+            } else if (usr == "a.wiesenhofer@volksklang.at")
+            {
+                objekt.Kuerzel = "AW";
+            }
+            else if (usr == "erwald@gmx.at")
+            {
+                objekt.Kuerzel = "ER";
+            }
+
+       
+                 
+
+
             _context.Add(objekt);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Edit),new { id = objekt.ID });
@@ -121,8 +139,8 @@ namespace VolksKlang.Controllers
                 {
                     await FileUpload.FormFile.CopyToAsync(memoryStream);
 
-                    // Upload the file if less than 2 MB
-                    if (memoryStream.Length < 2097152)
+                    // Upload the file if less than 5 MB
+                    if (memoryStream.Length < 5097152)
                     {
                         var file = new AppFile()
                         {
@@ -133,10 +151,10 @@ namespace VolksKlang.Controllers
 
                         if (_context.File.Any(e => e.Serial == id))
                         {
-                            var oldfile = await _context.File.FirstAsync(f => f.Serial == id);
+                            //var oldfile = await _context.File.FirstAsync(f => f.Serial == id);
 
-                            _context.File.Remove(oldfile);
-                            await _context.SaveChangesAsync();
+                            //_context.File.Remove(oldfile);
+                            //await _context.SaveChangesAsync();
                         }
 
                         _context.File.Add(file);
@@ -162,7 +180,7 @@ namespace VolksKlang.Controllers
         public async Task<IActionResult> Download(int id)
         {
 
-            var requestFile = await _context.File.SingleOrDefaultAsync(f=>f.Serial==id);
+            var requestFile = await _context.File.SingleOrDefaultAsync(f=>f.Id==id);
 
             if (requestFile == null)
             {
@@ -196,11 +214,8 @@ namespace VolksKlang.Controllers
             ViewBag.Kategories = await _context.Kategorie.ToListAsync();
             var objekt = await _context.Objekt.Include(o=>o.Herkunft).Include(o => o.Kategorie).Include(o => o.Bezeichnung).FirstOrDefaultAsync(o => o.ID==id);
 
-
-            if (_context.File.Any(e => e.Serial == id))
-            {
-                ViewBag.image = true;
-            }
+            ViewBag.images   =  _context.File.Where(f=>f.Serial==id).ToList();
+                       
 
 
             if (objekt == null)

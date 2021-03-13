@@ -35,6 +35,7 @@ D:\VolksKlang\VolksKlang\obj\Release\net5.0\PubTmp\Out\wwwroot\lib\jquery\dist\j
 D:\VolksKlang\VolksKlang\obj\Release\net5.0\PubTmp\Out\wwwroot\lib\jquery\dist\jquery.min.js
 D:\VolksKlang\VolksKlang\obj\Release\net5.0\PubTmp\Out\wwwroot\lib\jquery\dist\jquery.min.map
 D:\VolksKlang\VolksKlang\obj\Release\net5.0\PubTmp\Out\wwwroot\lib\jquery\LICENSE.txt
+D:\VolksKlang\VolksKlang\obj\Release\net5.0\PubTmp\Out\wwwroot\LOGOfarbig-klein-300x284.jpg
 D:\VolksKlang\VolksKlang\obj\Release\net5.0\PubTmp\Out\appsettings.Development.json
 D:\VolksKlang\VolksKlang\obj\Release\net5.0\PubTmp\Out\appsettings.json
 D:\VolksKlang\VolksKlang\obj\Release\net5.0\PubTmp\Out\VolksKlang.dll

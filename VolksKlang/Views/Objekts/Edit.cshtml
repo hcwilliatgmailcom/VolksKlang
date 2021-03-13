@@ -78,7 +78,7 @@
             </div>
 
 
- 
+
 
             <div class="form-group">
                 <input name="button" type="submit" value="Speichern" class="btn btn-danger" />
@@ -93,10 +93,22 @@
 </div>
 
 
-@if (!(ViewBag.image == null))
+
+
+@if (!(ViewBag.images == null))
 {
 
-<img style="width:100%;" src="/Objekts/Download/@Model.ID" />
+
+    @foreach (var item in ViewBag.images)
+
+
+    {
+        <img style="width:100%;" src="/Objekts/Download/@item.Id" />
+    }
+
+
+
+
 }
 
 
