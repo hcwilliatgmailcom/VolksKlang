@@ -103,6 +103,23 @@ namespace VolksKlang.Controllers
                 Datum = quellobjekt.Datum,
                 Euro = quellobjekt.Euro
             };
+
+
+            var usr = User.Identity.Name;
+            if (usr == "p_rath@gmx.at")
+            {
+                neuesobjekt.Kuerzel = "PR";
+            }
+            else if (usr == "a.wiesenhofer@volksklang.at")
+            {
+                neuesobjekt.Kuerzel = "AW";
+            }
+            else if (usr == "erwald@gmx.at")
+            {
+                neuesobjekt.Kuerzel = "EK";
+            }
+
+
             _context.Add(neuesobjekt);
             await _context.SaveChangesAsync();
 

@@ -9,6 +9,7 @@ namespace VolksKlang.Models
         public string Name { get; set; }
         public string Kuerzel { get; set; }
 
+        public int? Parent { get; set; }
 
     }
 }

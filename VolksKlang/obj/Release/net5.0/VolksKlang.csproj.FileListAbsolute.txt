@@ -253,3 +253,7 @@ D:\VolksKlang\VolksKlang\obj\Release\net5.0\Razor\Areas\Identity\Pages\Error.csh
 D:\VolksKlang\VolksKlang\obj\Release\net5.0\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
 D:\VolksKlang\VolksKlang\obj\Release\net5.0\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
 D:\VolksKlang\VolksKlang\obj\Release\net5.0\Razor\Views\Objekts\Delete.cshtml.g.cs
+D:\VolksKlang\VolksKlang\bin\Release\net5.0\System.Drawing.Common.dll
+D:\VolksKlang\VolksKlang\bin\Release\net5.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\VolksKlang\VolksKlang\bin\Release\net5.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\VolksKlang\VolksKlang\obj\Release\net5.0\Razor\Views\Shared\_TreePartial.cshtml.g.cs

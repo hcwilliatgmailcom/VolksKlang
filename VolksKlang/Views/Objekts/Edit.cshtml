@@ -41,10 +41,16 @@
                 <span asp-validation-for="Datum" class="text-danger"></span>
             </div>
 
+            @if ((ViewBag.usr == "p_rath@gmx.at" && Model.Kuerzel == "PR") || (ViewBag.usr == "a.wiesenhofer@volksklang.at" && Model.Kuerzel == "AW") || (ViewBag.usr == "erwald@gmx.at" && Model.Kuerzel == "EK"))
+            {
 
-            @await Html.PartialAsync("_EdgePartial", ViewBag.Bezeichnungs, new ViewDataDictionary(ViewData) { { "Selected", Model.Bezeichnung } })
+                @await Html.PartialAsync("_TreePartial", ViewBag.Bezeichnungs, new ViewDataDictionary(ViewData) { { "Selected", Model.Bezeichnung } })
 
-
+            }
+            else
+            {
+                @await Html.PartialAsync("_EdgePartial", ViewBag.Bezeichnungs, new ViewDataDictionary(ViewData) { { "Selected", Model.Bezeichnung } })
+            }
 
             @await Html.PartialAsync("_EdgePartial", ViewBag.Kategories, new ViewDataDictionary(ViewData) { { "Selected", Model.Kategorie } })
 
@@ -78,14 +84,18 @@
             </div>
 
 
+            <input type="hidden" asp-for="Kuerzel" class="form-control" />
 
+            @if ((ViewBag.usr == "p_rath@gmx.at" && Model.Kuerzel == "PR") || (ViewBag.usr == "a.wiesenhofer@volksklang.at" && Model.Kuerzel == "AW") || (ViewBag.usr == "erwald@gmx.at" && Model.Kuerzel == "EK"))
+            {
 
-            <div class="form-group">
-                <input name="button" type="submit" value="Speichern" class="btn btn-danger" />
-                <input name="button" type="submit" value="Speichern und Bild hochladen" class="btn btn-danger" />
+                <div class="form-group">
+                    <input name="button" type="submit" value="Speichern" class="btn btn-danger" />
+                    <input name="button" type="submit" value="Speichern und Bild hochladen" class="btn btn-danger" />
 
-            </div>
+                </div>
 
+            }
 
 
         </form>

@@ -86,7 +86,7 @@ namespace VolksKlang.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,Kuerzel")] Bezeichnung bezeichnung)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,Kuerzel,Parent")] Bezeichnung bezeichnung)
         {
             if (id != bezeichnung.ID)
             {
